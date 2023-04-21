@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="UEstebanGReformaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="IdPersona" />
+          </Key>
+          <Property Name="IdPersona" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="250" />
+          <Property Name="Direccion" Type="varchar" MaxLength="250" />
+          <Property Name="Edad" Type="int" />
+          <Property Name="Correo" Type="varchar" MaxLength="50" />
+          <Property Name="Habilidades" Type="varchar" MaxLength="250" />
+          <Property Name="IdTipo" Type="int" />
+        </EntityType>
+        <Function Name="PersonaCRUD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Action" Type="varchar" Mode="In" />
+          <Parameter Name="IdPersona" Type="int" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Direccion" Type="varchar" Mode="In" />
+          <Parameter Name="Edad" Type="int" Mode="In" />
+          <Parameter Name="Correo" Type="varchar" Mode="In" />
+          <Parameter Name="Habilidad1" Type="varchar" Mode="In" />
+          <Parameter Name="habilidad2" Type="varchar" Mode="In" />
+          <Parameter Name="IdTipo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PersonaGetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="PersonaGetById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdPersona" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="UEstebanGReformaModelStoreContainer">
+          <EntitySet Name="Persona" EntityType="Self.Persona" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="UEstebanGReformaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="IdPersona" />
+          </Key>
+          <Property Name="IdPersona" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Edad" Type="Int32" />
+          <Property Name="Correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Habilidades" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="IdTipo" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="UEstebanGReformaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Personas" EntityType="Self.Persona" />
+          <FunctionImport Name="PersonaCRUD">
+            <Parameter Name="Action" Mode="In" Type="String" />
+            <Parameter Name="IdPersona" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Direccion" Mode="In" Type="String" />
+            <Parameter Name="Edad" Mode="In" Type="Int32" />
+            <Parameter Name="Correo" Mode="In" Type="String" />
+            <Parameter Name="Habilidad1" Mode="In" Type="String" />
+            <Parameter Name="habilidad2" Mode="In" Type="String" />
+            <Parameter Name="IdTipo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PersonaGetAll" ReturnType="Collection(UEstebanGReformaModel.PersonaGetAll_Result)" />
+          <FunctionImport Name="PersonaGetById" ReturnType="Collection(UEstebanGReformaModel.PersonaGetById_Result)">
+            <Parameter Name="IdPersona" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="PersonaGetAll_Result">
+          <Property Type="Int32" Name="IdPersona" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="Direccion" Nullable="true" MaxLength="250" />
+          <Property Type="Int32" Name="Edad" Nullable="true" />
+          <Property Type="String" Name="Correo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Habilidades" Nullable="true" MaxLength="250" />
+          <Property Type="Int32" Name="IdTipo" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="PersonaGetById_Result">
+          <Property Type="Int32" Name="IdPersona" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="Direccion" Nullable="true" MaxLength="250" />
+          <Property Type="Int32" Name="Edad" Nullable="true" />
+          <Property Type="String" Name="Correo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Habilidades" Nullable="true" MaxLength="250" />
+          <Property Type="Int32" Name="IdTipo" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="UEstebanGReformaModelStoreContainer" CdmEntityContainer="UEstebanGReformaEntities">
+          <EntitySetMapping Name="Personas">
+            <EntityTypeMapping TypeName="UEstebanGReformaModel.Persona">
+              <MappingFragment StoreEntitySet="Persona">
+                <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Edad" ColumnName="Edad" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Habilidades" ColumnName="Habilidades" />
+                <ScalarProperty Name="IdTipo" ColumnName="IdTipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="PersonaCRUD" FunctionName="UEstebanGReformaModel.Store.PersonaCRUD" />
+          <FunctionImportMapping FunctionImportName="PersonaGetAll" FunctionName="UEstebanGReformaModel.Store.PersonaGetAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="UEstebanGReformaModel.PersonaGetAll_Result">
+                <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Edad" ColumnName="Edad" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Habilidades" ColumnName="Habilidades" />
+                <ScalarProperty Name="IdTipo" ColumnName="IdTipo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PersonaGetById" FunctionName="UEstebanGReformaModel.Store.PersonaGetById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="UEstebanGReformaModel.PersonaGetById_Result">
+                <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Edad" ColumnName="Edad" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Habilidades" ColumnName="Habilidades" />
+                <ScalarProperty Name="IdTipo" ColumnName="IdTipo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
